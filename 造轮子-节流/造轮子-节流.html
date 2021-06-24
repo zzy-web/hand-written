@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title></title>
+</head>
+
+<body>
+  <button type="button" onclick="throttle(add)">节流</button>
+  <span id="num"> 0 </span>
+</body>
+<script src="./index.js"></script>
+<script type="text/javascript">
+  function add() {
+    let dom = $('#num')
+    if (parseInt(dom.innerText) == 6) {
+      dom.innerText = 1
+    } else {
+      dom.innerText = parseInt(dom.innerText) + 1
+    }
+  }
+</script>
+
+</html>
