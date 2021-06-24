@@ -11,11 +11,27 @@
 <body>
 
 </body>
-<script src="./aplay.js"></script>
-<script src="./bind.js"></script>
-<script src="./call.js"></script>
+<script src="./index.js"></script>
 <script>
+  var name1 = "小红"
+  var o = {
+    name1: '小雷'
+  }
+  var obj = {
+    name1: '小明',
+    a: { name1: 'aaa' },
+    func: function (a, b, c) {
+      console.log({ a, b, c })
+      console.log(this.name1, a, b, c)
+    },
+    funca: function () {
+      return { name1: 789 }
+    }
+  }
 
+  // obj.func.myCall(o, '小红', '小白', 5)  //小雷 小红 小白 5
+  // obj.func.myApply(o, ['小红', '小白', 5])  //小雷 小红 小白 5
+  obj.func.myBind(o, ['小红', '小白', 5])()  //小雷 小红 小白 5
 </script>
 
 </html>
