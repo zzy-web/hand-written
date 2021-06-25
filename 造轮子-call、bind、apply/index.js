@@ -27,6 +27,5 @@ Function.prototype.myBind = function (_this = window, arr) {// _this没传默认
     // 添加的函数置为null，可以让浏览器进行回收
     _this.myFunc = null
   }
-
   return result
 }
