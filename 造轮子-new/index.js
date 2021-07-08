@@ -11,6 +11,3 @@ function _new (Fn, ...params) {
   Fn.call(obj, ...params)
   return obj
 }
-
-
-

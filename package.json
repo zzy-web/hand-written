@@ -1,0 +1,24 @@
+{
+  "name": "hand-written",
+  "version": "1.0.0",
+  "description": "造轮子  手写",
+  "main": "手动给字符串加函数.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzy-web/hand-written.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzy-web/hand-written/issues"
+  },
+  "homepage": "https://github.com/zzy-web/hand-written#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.9"
+  }
+}
