@@ -1,16 +1,17 @@
-function objToUrl (obj) {
+function objToUrl (obj, type) {
   let paramsArr = []
   let uri = ''
+  let prefix = type == 'Get' ? '?' : ''
   for (let i in obj) {
     paramsArr.push(i + "=" + obj[i])
   }
   if (paramsArr.length) {
-    uri = "?" + paramsArr.join("&")
+    uri = prefix + paramsArr.join("&")
   }
   return uri
 }
 function ajax (options) {
-  const {
+  let {
     url,
     type,
     data,
@@ -18,8 +19,9 @@ function ajax (options) {
     success,
     fail
   } = options
+  type = type.toUpperCase()
+  let uri = objToUrl(data, type)
 
-  let uri = objToUrl(data)
   var xmlhttp;
   if (window.XMLHttpRequest) {
     xmlhttp = new XMLHttpRequest();
@@ -36,10 +38,18 @@ function ajax (options) {
   }
 
 
-
-  xmlhttp.open(type, url + uri, true);
+  if (type == 'Get') {
+    xmlhttp.open(type, url + uri, true);
+  } else if (type == 'POST') {
+    xmlhttp.open(type, url, true);
+  }
   for (let i in header) {
     xmlhttp.setRequestHeader(i, header[i]);
   }
-  xmlhttp.send();
+  if (type == 'Get') {
+    xmlhttp.send();
+  } else if (type == 'POST') {
+    console.log({ uri })
+    xmlhttp.send("a=2");
+  }
 }

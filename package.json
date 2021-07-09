@@ -19,6 +19,6 @@
   "homepage": "https://github.com/zzy-web/hand-written#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.10"
   }
 }

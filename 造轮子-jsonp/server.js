@@ -14,9 +14,11 @@ app.all('*', function (req, res, next) {
 
 // 当发出GET请求时，返回“hello world”
 app.get('/jsonp', function (req, res) {
-  res.send("jsonp(11)")
+  const { jsonpFnName } = req.query
+  setTimeout(() => {
+    res.send(`${jsonpFnName}(${JSON.stringify({ data: '请求成功' })})`)
+  }, 500);
 })
 app.get('/get', function (req, res) {
-  console.log(112)
   res.send({ a: 11 })
 })

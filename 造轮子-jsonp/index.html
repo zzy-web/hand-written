@@ -9,15 +9,22 @@
 </head>
 
 <body>
-
+  <button onclick="handleClick()">点我发送jsonp请求</button>
 </body>
+<script src="./index.js"></script>
 <script>
-  function jsonp(v) {
-    console.log({ jsonp: v })
+  function handleClick() {
+    jsonp({
+      url: 'http://127.0.0.1:8088/jsonp',
+      data: { a: 1 },
+      success(res) {
+        console.log({ res })
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
   }
-</script>
-<script src='http://localhost:8088/jsonp'></script>
-<script>
 </script>
 
 </html>
