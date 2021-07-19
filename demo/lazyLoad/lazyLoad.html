@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin-bottom: 100px;
+      border: none;
+      padding: 0;
+      font-size: 0;
+    }
+
+    .lazy {
+      width: 700px;
+      height: 700px;
+      opacity: 0;
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <img class="lazy" src="" data-src="./img/IU1.jpg" alt="">
+    <img class="lazy" src="" data-src="./img/IU2.jpg" alt="">
+    <img class="lazy" src="" data-src="./img/IU3.jpg" alt="">
+    <img class="lazy" src="" data-src="./img/IU4.jpg" alt="">
+    <img class="lazy" src="" data-src="./img/IU5.jpg" alt="">
+  </div>
+</body>
+<script src="../../造轮子-节流/index.js"></script>
+<script>
+  let imgs = Array.from(document.querySelectorAll('.lazy'))
+  const winH = document.documentElement.clientHeight
+
+
+  //方法1，使用IntersectionObserver监听元素
+  let ob = new IntersectionObserver(change => {
+    const { target, isIntersecting } = change[0]
+    if (isIntersecting) {
+      target.src = target.getAttribute('data-src')
+      target.style.opacity = 1
+      ob.unobserve(target)
+    }
+  }, {
+    threshold: [1]
+  })
+
+  function cyclicImg(imgs) {
+    for (let i = 0; i < imgs.length; i++) {
+      let { bottom } = imgs[i].getBoundingClientRect()
+      if (bottom <= winH) {
+        imgs[i].src = imgs[i].getAttribute('data-src')
+        imgs[i].style.opacity = 1
+      } else {
+        return imgs.slice(i)
+      }
+    }
+    return []
+  }
+
+  window.onload = function () {
+    imgs = cyclicImg(imgs)
+    for (let i = 0; i < imgs.length; i++) {
+      ob.observe(imgs[i])
+    }
+  }
+  //方法2，使用window.onscroll+节流
+  // window.onscroll = () => throttle(function () {
+  //   console.log(1)
+  //   imgs = cyclicImg(imgs)
+  // }, 100)
+</script>
+
+</html>
