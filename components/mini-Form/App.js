@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react'
 import Form from './components'
 const { Field } = Form
@@ -8,12 +9,12 @@ function App() {
   const [form] = Form.useForm()
 
   //表单验证失败
-  const onFinish = () => {
-    console.log('onFinish')
+  const onFinish = (v) => {
+    console.log('验证成功')
   }
 
-  const onFinishFaild = () => {
-    console.log('onFinishFaild')
+  const onFinishFaild = (v) => {
+    console.log(v)
   }
   useEffect(() => {
     console.log('form')
