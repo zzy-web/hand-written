@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url(intro.css);
+
+    body {
+      height: 100vh;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .head {
+      height: 54px;
+      border: 1px solid
+    }
+
+    .content {
+      display: flex;
+      flex: 1;
+    }
+
+    .sideBar {
+      width: 100px;
+      height: 100%;
+      border: 1px solid #333
+    }
+
+    .container {
+      flex: 1;
+      border: 1px solid
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="head">
+      顶部导航栏
+    </div>
+    <div class="content">
+      <div class="sideBar">侧边栏</div>
+      <div class="container">内容 </div>
+    </div>
+
+  </div>
+</body>
+<script type="module">
+  import Intro from './intro.js'
+
+  const intro = new Intro(
+    [{
+      element: `.head`,
+      title: '顶部导航栏',
+      intro: '这是顶部导航栏',
+      position: 'bottom'
+    },
+    {
+      element: `.sideBar`,
+      title: '侧边栏',
+      intro: '这是侧边栏',
+      position: 'right'
+    },
+    {
+      element: `.container`,
+      title: '主要内容',
+      intro: '这是主要内容',
+      position: 'top'
+    }]
+  )
+  intro.start()
+  setTimeout(intro.start,3000)
+</script>
+
+</html>

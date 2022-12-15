@@ -1,0 +1,33 @@
+.intro-content {
+  position: absolute;
+  transition: all .3s;
+  box-shadow: rgb(33 33 33 / 80%) 0px 0px 1px 2px, rgb(33 33 33 / 50%) 0px 0px 0px 5000px;
+}
+
+.intro-card {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border: 1px solid #333;
+}
+
+.intro-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px
+}
+
+.intro-card-content .intro-card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.intro-card-content .intro-prev,
+.intro-card-content .intro-next,
+.intro-card-content .intro-skip,
+.intro-card-content .intro-done {
+  cursor: pointer;
+}
