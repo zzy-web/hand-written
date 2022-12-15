@@ -22,7 +22,6 @@ export default class Intro {
     return document.querySelector(el)
   }
   start=()=> {
-    console.log(this);
     if (this.defaultSetps && this.defaultSetps.length) {
       this.render()
     } else {
