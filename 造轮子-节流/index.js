@@ -1,17 +1,22 @@
-function $ (e) {
+function $(e) {
   return document.querySelector(e)
 }
-let flag = false,
-  timer = null
+function throttle(func, wait = 1500, immediate) {
+  let timer = null
+  let isImmediate = true
+  return function () {
+    if (immediate && isImmediate) {
+      isImmediate = false
+      func()
+    } else {
+      if (timer) return
+      timer = setTimeout(() => {
+        func()
+        clearTimeout(timer)
+        timer = null
+      }, wait)
+    }
 
-//节流原理：在一定时间内，只能触发一次
-function throttle (func, wait = 1500) {
-  if (!flag) {
-    flag = true
-    typeof func === 'function' && func()
-    timer = setTimeout(() => {
-      flag = false
-    }, wait)
+
   }
 }
-
