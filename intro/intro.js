@@ -21,7 +21,7 @@ export default class Intro {
   getDom(el) {
     return document.querySelector(el)
   }
-  start=()=> {
+  start() {
     if (this.defaultSetps && this.defaultSetps.length) {
       this.render()
     } else {

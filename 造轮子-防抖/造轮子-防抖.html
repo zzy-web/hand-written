@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <button type="button" onclick="debounce(add)">防抖</button>
+  <button type="button" class="btn">防抖</button>
   <span id="num">
     0
   </span>
@@ -25,6 +25,7 @@
       dom.innerText = parseInt(dom.innerText) + 1
     }
   }
+  document.querySelector('.btn').addEventListener('click', debounce(add,1000,false))
 </script>
 
 </html>
