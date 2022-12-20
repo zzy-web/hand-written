@@ -33,9 +33,8 @@ export default class Intro {
     this.getDom('.intro-prev').removeEventListener('click', this.prev)
     this.getDom('.intro-skip').removeEventListener('click', this.end)
     this.getDom('.intro-done').removeEventListener('click', this.end)
-
+    this.element.style.animation = 'warpGradientOut .5s'
     window.removeEventListener('resize', this.resize)
-    this.getDom('body').removeChild(this.element)
   }
 
   setOptions(defaultOption) {
@@ -164,6 +163,12 @@ export default class Intro {
     this.getDom('.intro-prev').addEventListener('click', this.prev)
     this.getDom('.intro-skip').addEventListener('click', this.end)
     this.getDom('.intro-done').addEventListener('click', this.end)
+    this.getDom('.intro-content').addEventListener('animationend', ({ animationName }) => {
+      if (animationName === 'warpGradientOut') {
+        this.getDom('body').removeChild(this.element)
+
+      }
+    })
     window.addEventListener('resize', this.resize)
   }
 }
