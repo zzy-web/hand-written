@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="margin-bottom: 30px;">
+    width: <input class="widthIpt" type="text" oninput="changeWidth(this)">
+    height: <input class="heightIpt" type="text" oninput="changeHeight(this)">
+    <label for="useArtworkMaster"><input type="checkbox" id="useArtworkMaster" />使用原图像素</label>
+    <span style="margin-left: 30px;">
+      清晰度：
+    </span>
+    <select id="definition">
+      <option value="0">0</option>
+      <option value="0.1">0.1</option>
+      <option value="0.2">0.2</option>
+      <option value="0.3">0.3</option>
+      <option value="0.4">0.4</option>
+      <option selected="selected" value="0.5">0.5</option>
+      <option value="0.6">0.6</option>
+      <option value="0.7">0.7</option>
+      <option value="0.8">0.8</option>
+      <option value="0.9">0.9</option>
+      <option value="1">1</option>
+    </select>
+  </div>
+  <input type="file" onchange="compressImg(this)">
+</body>
+<script>
+  function $(e) {
+    return document.querySelector(e)
+  }
+  let w = 1920
+  let h = 1080
+  $('.widthIpt').value = w
+  $('.heightIpt').value = h
+  function changeWidth({ value }) {
+    w = value
+  }
+  function changeHeight({ value }) {
+    h = value
+  }
+  function compressImg(e) {
+    const disposeFile = e.files[0]
+    if ($('#previewImg')) {
+      $('body').removeChild($('#previewImg'))
+    }
+    const read = new FileReader()
+    read.readAsDataURL(disposeFile);
+    read.onload = (e) => {
+      const img = new Image();
+      img.src = e.target.result;
+      img.onload = function () {
+        if ($('#useArtworkMaster').checked) {
+          w = this.width;
+          h = this.height;
+        }
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.setAttribute('width', w);
+        canvas.setAttribute('height', h);
+        ctx.drawImage(this, 0, 0, w, h);
+        let base64 = canvas.toDataURL('image/jpeg', Number($('#definition').value));
+        const img = document.createElement('img')
+        img.src = base64
+        img.style.width = '1000px'
+        img.id = 'previewImg'
+        $('body').appendChild(img)
+      };
+    };
+
+  }
+</script>
+
+</html>

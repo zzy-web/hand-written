@@ -1,0 +1,5 @@
+const koaApp =require('koa')
+const Router =require('koa-router')
+const route=new Router()
+const app=new koaApp()
+route.get('')
