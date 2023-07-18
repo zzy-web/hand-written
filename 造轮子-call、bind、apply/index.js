@@ -18,7 +18,7 @@ Function.prototype.myApply = function (_this = window, arr = []) {// _this没传
   return result
 }
 
-Function.prototype.myBind = function (_this = window, arr) {// _this没传默认值为window
+Function.prototype.myBind = function (_this = window, arr = []) {// _this没传默认值为window
   // 将执行函数的this赋值给传进来的值
   _this.myFunc = this
   // 执行函数并存下返回值
